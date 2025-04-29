@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->date('year');
+            $table->integer('year');
             $table->enum('gender', ['M', 'F']);
             $table->float('prize_money');
             $table->integer('players');
