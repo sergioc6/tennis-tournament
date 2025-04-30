@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\PowerOfTwo;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTournamentRequest extends FormRequest
+class StoreTournamentPlayerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +21,22 @@ class StoreTournamentRequest extends FormRequest
      */
     public function rules(): array
     {
+        $tournament = $this->tournament;
+        
         return [
-            'name' => 'required|string',
-            'year' => 'required|date_format:Y',
-            'gender' => 'required|in:M,F',
-            'players_count' => [
+            'players' => [
+                'required',
+                'array',
+                'distinct',
+                'size:'. $tournament->players_count,
+            ],
+            'players.*' => [
                 'required',
                 'integer',
                 'gt:0',
-                new PowerOfTwo
-            ],
-            'prize_money' => 'required|numeric|gt:0'
+                'bail',
+                'exists:players,id'
+            ]
         ];
     }
 }

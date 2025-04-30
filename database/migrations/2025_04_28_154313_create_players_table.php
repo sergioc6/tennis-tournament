@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->enum('gender', ['M', 'F', 'O']);
-            $table->integer('skill');
             $table->integer('strength');
             $table->integer('movement_speed');
             $table->integer('reaction_time');

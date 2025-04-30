@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Player extends Model
 {
     use HasFactory;
-    //
+    
+    public function tournaments()
+    {
+        return $this->belongsToMany(Tournament::class);
+    }
 }

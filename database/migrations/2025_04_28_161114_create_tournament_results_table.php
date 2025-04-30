@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('tournament_id');
             $table->integer('player_one_id');
             $table->integer('player_two_id');
+            $table->string('round')->nullable();
             $table->integer('player_winner_id')->nullable();
             $table->string('result')->nullable();
 

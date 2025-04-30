@@ -18,12 +18,10 @@ return new class extends Migration
             $table->integer('year');
             $table->enum('gender', ['M', 'F']);
             $table->float('prize_money');
-            $table->integer('players');
+            $table->integer('players_count');
             $table->integer('player_champion_id')->nullable();
-            $table->integer('player_runner_up_id')->nullable();
 
             $table->foreign('player_champion_id')->references('id')->on('players');
-            $table->foreign('player_runner_up_id')->references('id')->on('players');
         });
     }
 

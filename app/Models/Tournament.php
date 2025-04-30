@@ -11,7 +11,17 @@ class Tournament extends Model
         'year',
         'gender',
         'prize_money',
-        'players'
+        'players_count',
+        'player_champion_id'
     ];
-    
+
+    public function players()
+    {
+        return $this->belongsToMany(Player::class, 'tournament_player');
+    }
+
+    public function champion()
+    {
+        return $this->hasOne(Player::class, 'id', 'player_champion_id');
+    }
 }
