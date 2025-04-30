@@ -44,7 +44,10 @@ Run seeder for Players
 By default, the API must be running in localhost:80
 
 ## API Docs
+You can find the API docs for this proyect in the following [link](https://documenter.getpostman.com/view/1096358/2sB2j3DCmm).
 
 ## Tests
 
 ## TODO
+- Add type in Tournaments (best3-best5).
+- Allow doubles matches.
