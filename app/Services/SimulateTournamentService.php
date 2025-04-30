@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Player;
 use App\Models\Tournament;
 use App\Models\TournamentResult;
 use App\Services\Simulate\ISimulateMatch;
@@ -19,6 +20,10 @@ class SimulateTournamentService
         $this->tournament = $tournament;
         $playersInscribed = $this->tournament->players;
 
+        if($this->tournament->player_champion_id) {
+            throw new Error('The tournament is finished');
+        }
+
         if ($this->tournament->players_count != count($playersInscribed)) {
             throw new Error('The tournament is not fully');
         }
@@ -26,7 +31,7 @@ class SimulateTournamentService
         $context = new SimulateMatchTournamentContext($this->tournament);
         $this->simulator = $context->simulator();
 
-        return $this->simulateRound($playersInscribed);
+        return $this->simulateRound($playersInscribed->all());
     }
 
     private function groupPlayersRandom(array $players): array
@@ -51,7 +56,6 @@ class SimulateTournamentService
         $groups = $this->groupPlayersRandom($players);
         $round = count($groups);
         $winners = [];
-
         foreach ($groups as $group) {
             $resultSimulator = $this->simulator->simulateMatch($group[0], $group[1]);
 
@@ -77,10 +81,10 @@ class SimulateTournamentService
         return $winners;
     }
 
-    private function declareWinner($playerWinner): void
+    private function declareWinner(Player $playerWinner): void
     {
         $this->tournament->update([
-            'player_winner_id' => $playerWinner->id
+            'player_champion_id' => $playerWinner->id
         ]);
     }
 }
