@@ -16,4 +16,19 @@ class TournamentResult extends Model
         'player_winner_id',
         'result',
     ];
+
+    public function playerOne()
+    {
+        return $this->hasOne(Player::class, 'id', 'player_one_id');
+    }
+
+    public function playerTwo()
+    {
+        return $this->hasOne(Player::class, 'id', 'player_two_id');
+    }
+
+    public function playerWinner()
+    {
+        return $this->hasOne(Player::class, 'id', 'player_winner_id');
+    }
 }
