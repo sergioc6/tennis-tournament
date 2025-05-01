@@ -15,7 +15,7 @@ class SimulateTournamentService
 
     private Tournament $tournament;
 
-    public function process(Tournament $tournament): array
+    public function process(Tournament $tournament): Player
     {
         $this->tournament = $tournament;
         $playersInscribed = $this->tournament->players;
@@ -31,7 +31,7 @@ class SimulateTournamentService
         $context = new SimulateMatchTournamentContext($this->tournament);
         $this->simulator = $context->simulator();
 
-        return $this->simulateRound($playersInscribed->all());
+        return $this->simulateRound($playersInscribed->all())[0];
     }
 
     private function groupPlayersRandom(array $players): array

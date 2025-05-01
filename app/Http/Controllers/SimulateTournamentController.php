@@ -13,9 +13,12 @@ class SimulateTournamentController extends Controller
     {
         $this->simulateTournamentService = $simulateTournamentService;
     }
-    
+
     public function __invoke(Tournament $tournament)
     {
-        $this->simulateTournamentService->process($tournament);
+        $winner = $this->simulateTournamentService->process($tournament);
+        return response()->json([
+            'winner' => $winner
+        ]);
     }
 }
