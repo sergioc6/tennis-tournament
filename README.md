@@ -53,6 +53,7 @@ You can find the API docs for this proyect in the following [link](https://docum
 ## Tests
 
 ## TODO
+- Finish tests and deploy
 - Add enum class for gender (M-F-O).
 - Add type in Tournaments (best3-best5).
 - Allow doubles matches.
