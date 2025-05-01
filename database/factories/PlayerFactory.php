@@ -22,7 +22,6 @@ class PlayerFactory extends Factory
         return [
             'name' => fake()->name($gender),
             'gender' => $gender == 'male' ? 'M' : 'F',
-            'skill' => fake()->numberBetween(0, 100),
             'strength' => fake()->numberBetween(0, 100),
             'movement_speed' => fake()->numberBetween(0, 100),
             'reaction_time' => fake()->numberBetween(0, 100),

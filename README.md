@@ -24,10 +24,14 @@ docker run --rm \
     composer install
 ```
 
-
 Run the containers
 ```sh
 ./vendor/bin/sail up -d
+```
+
+Generate a new key for the application
+```sh
+./vendor/bin/sail artisan key:generate
 ```
 
 ### Database
